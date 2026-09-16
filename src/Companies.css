@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  background-color: #0d1117 !important;
+  color: #e6edf3 !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Container principal centralizado e com largura máxima confortável */
+.main-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header Centralizado */
+.page-header {
+  width: 100%;
+  text-align: center !important;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  text-align: center !important;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #f0f6fc;
+  margin: 0 0 0.5rem 0;
+}
+
+.page-header p {
+  text-align: center !important;
+  color: #8b949e;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Seção da Tabela */
+.table-section {
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.table-section h2 {
+  text-align: center !important;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #58a6ff;
+  margin-bottom: 1rem;
+}
+
+/* Wrapper da Tabela com borda e sombra */
+.table-wrapper {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  overflow-x: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+/* Cabeçalho das Tabelas - Centralizado */
+thead {
+  background-color: #21262d;
+  border-bottom: 1px solid #30363d;
+}
+
+th {
+  padding: 1rem;
+  font-weight: 600;
+  color: #8b949e;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+/* Células de Dados - Texto e números centralizados */
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #21262d;
+  color: #c9d1d9;
+  text-align: center;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background-color: rgba(110, 118, 129, 0.12);
+  transition: background-color 0.15s ease;
+}
+
+/* Estilos de Destaque para melhor leitura */
+.col-id {
+  color: #79c0ff;
+  font-weight: 600;
+}
+
+.col-code {
+  font-family: monospace;
+  color: #a5d6ff;
+  font-size: 0.9rem;
+}
+
+.badge {
+  background-color: rgba(56, 139, 253, 0.15);
+  color: #58a6ff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.825rem;
+  font-weight: 500;
+  border: 1px solid rgba(56, 139, 253, 0.3);
+  display: inline-block;
+}
+
+.titulo_sub {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
