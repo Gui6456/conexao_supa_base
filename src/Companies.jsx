@@ -11,10 +11,15 @@ function Companies() {
     const [show_companies, setshowCompanies] = useState(true)
     const [show_modal, setshowModal] = useState(false)
 
+    const [idInterprise, setidInterprise] = useState("")
+    const [name, setName] = useState("")
+    const [contact, setContact] = useState("")
+    const [cargo, setCargo] = useState("1") // Deixar o primeiro valor possível no select responsável pelo cargo do funcionário, nesse caso o 1(func. comum)
+
     async function search_all_companies (){
 
         const { error , data} = await supabase.from("companies").select()
-        console.log(data)
+        // console.log(data)
         setCompanies(data)
     }
 
@@ -30,7 +35,7 @@ function Companies() {
             )
         `)
 
-        console.log(data)
+        // console.log(data)
         setEmployees(data)
     }
 
@@ -38,12 +43,28 @@ function Companies() {
 
         const { error , data} = await supabase.from("employees").select('*,companies(*)').eq('id_interprise', id_interprise)
         console.log(data)
+        setidInterprise(id_interprise)
         setEmployees(data)
-        change_view()
     }
 
     async function insert_employee() {
-        <></>
+        const object = {
+            name: name,
+            cargo: parseInt(cargo),  // A ordem não importa quando se coloca aqui
+            contact: contact,
+            id_interprise: parseInt(idInterprise)
+        }
+
+        const {error, data} = await supabase.from("employees").insert(object)
+
+        if (error == null){
+            alert("Funcionário cadastrado com sucesso!")
+            setshowModal(false)
+            search_employees_by_interprise(idInterprise)
+        } else {
+            alert("Erro ao cadastrar funcionário. Entre em contato com o suporte técnico")
+            console.log(error)
+        }
     }
 
     function change_view () {
@@ -91,7 +112,7 @@ function Companies() {
                                             <td> {i.name} </td>
                                             <td> {i.cnpj} </td>
                                             <td> {i.address} </td>
-                                            <td> <button onClick={ ()=> search_employees_by_interprise(i.id)}> Ver funcionários </button> </td>
+                                            <td> <button onClick={ ()=>{search_employees_by_interprise(i.id); change_view()}}> Ver funcionários </button> </td>
                                         </tr>
                                     )
                                 }
@@ -109,10 +130,10 @@ function Companies() {
 
                         <div className="modal">
                             <h2>Novo Funcionário</h2>
-                            <input placeholder="Nome..." />    <br/><br/>
-                            <input placeholder="Contato..." />  <br/><br/>
+                            <input onChange={(e)=> setName(e.target.value)} placeholder="Nome..." />    <br/><br/>
+                            <input onChange={(e)=> setContact(e.target.value)} placeholder="Contato..." />  <br/><br/>
 
-                            <select>   
+                            <select onChange={(e)=> setCargo(e.target.value)} >   
                                 <option value="1"> Funcionário comum </option>   
                                 <option value="0"> Administrador </option>
                             </select> <br/><br/>
@@ -130,8 +151,8 @@ function Companies() {
 
                     <div>
                         
-                        <h2> Funcionários </h2>
-                        <button className="botao_voltar" onClick={change_view}> Voltar </button>
+                        <h2> Funcionários </h2> {/* Criar uma função de seta sem um parâmetro, não é necessário,mas desse modo eu consigo acumular comandos nessa mesma linha com o ; */}
+                        <button className="botao_voltar" onClick={ ()=>{change_view(); setidInterprise(" ")}}> Voltar </button>
                         <button onClick={()=> setshowModal(true)} > Adicionar novo </button>
 
                         <table>
